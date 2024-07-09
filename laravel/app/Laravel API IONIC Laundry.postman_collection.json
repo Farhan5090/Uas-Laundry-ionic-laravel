@@ -1,0 +1,491 @@
+{
+	"info": {
+		"_postman_id": "6943599f-075d-4b79-9e03-b3e86518aae0",
+		"name": "Laravel API IONIC Laundry",
+		"description": "#### **Rest API Laravel dengan Authentifikasi JWT**\n\npada environment tambahkan parameter global:\n\n1. {{base_url}} = 127.0.0.1:8000\n    \n2. {{jwt}} = token jwt\n    \n\nUntuk mendapatkan token JWT buka folder Authentifikasi->login  \ndefault user:\n\n1. Admin  \n    username : admin  \n    password : 123\n    \n2. User  \n    username : user  \n    password : 123",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19930446"
+	},
+	"item": [
+		{
+			"name": "Authentifikasi",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"user\",\r\n    \"password\":\"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nama\": \"ubp\",\r\n    \"username\" : \"ubp\",\r\n    \"password\" :\"123\",\r\n    \"email\" : \"ubp@example.com\",\r\n    \"hp\":\"087673647637\",\r\n    \"alamat\": \"Karawnag\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/auth/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ceksesi",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/auth/me",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\":\"9c6943d0-fec2-49ee-bd00-6a32236d8126\",\r\n    \"produk_id\": \"9c6944ac-bcfb-438d-aa7b-d340c89f550e\",\r\n    \"berat\": \"1\",\r\n    \"jumlah\" : \"1\",\r\n    \"total\" : \"3000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/order",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cekout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\" : \"9c6943d0-fec2-49ee-bd00-6a32236d8126\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/order/cekout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"order",
+								"cekout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pesanan",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/order/history/9c6943d0-fec2-49ee-bd00-6a32236d8126",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"order",
+								"history",
+								"9c6943d0-fec2-49ee-bd00-6a32236d8126"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Whatsapp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "apiKey",
+									"value": "ac6510ceffcc46679a59b1ef86828a61",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "6285711115140",
+									"type": "text"
+								},
+								{
+									"key": "message",
+									"value": "Terimakasih telah order di kami! Mohon ditunggu, kami akan segera ke alamat anda.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://98.142.245.14:41243/api/sendMessage",
+							"protocol": "http",
+							"host": [
+								"98",
+								"142",
+								"245",
+								"14"
+							],
+							"port": "41243",
+							"path": [
+								"api",
+								"sendMessage"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "History",
+			"item": [
+				{
+					"name": "show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/history/9c6943d0-fec2-49ee-bd00-6a32236d8126",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"history",
+								"9c6943d0-fec2-49ee-bd00-6a32236d8126"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tambah",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\"   :\"9c67bf9c-9a07-43b7-9384-12579155160d\",\r\n    \"produk_id\" :\"fc584bad-3658-11ef-9598-089798ebee9e\",\r\n    \"berat\":\"2\",\r\n    \"jumlah\":\"1\",\r\n    \"total\": \"3000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/history",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"history"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Kategori",
+			"item": [
+				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/kategori",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"kategori"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Produk",
+			"item": [
+				{
+					"name": "Show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/produk",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"produk"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/produk/9c69481d-a770-4412-bfc0-d18bac4328f6",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"produk",
+								"9c69481d-a770-4412-bfc0-d18bac4328f6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Profile",
+			"item": [
+				{
+					"name": "Show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/profile/9c6943d0-fec2-49ee-bd00-6a32236d8126",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"profile",
+								"9c6943d0-fec2-49ee-bd00-6a32236d8126"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit data profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nama\": \"tes\",\r\n    \"email\":\"tes@example.com\",\r\n    \"alamat\":\"karawang\",\r\n    \"hp\": \"089348934\",\r\n    \"username\" : \"tes edit profile\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/profile/9c675336-b729-404a-836f-a7b62ebf6401",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"profile",
+								"9c675336-b729-404a-836f-a7b62ebf6401"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
